@@ -9,4 +9,4 @@
 /phpstan.neon.dist  export-ignore
 /phpunit.xml.dist   export-ignore
 /public             export-ignore
-/tests              export-Ignore
+/tests              export-ignore
