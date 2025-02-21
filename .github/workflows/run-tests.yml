@@ -1,0 +1,51 @@
+name: Run tests
+
+on:
+  push:
+  pull_request:
+    
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        php: [8.2, 8.3, 8.4]
+        laravel: [10.*, 11.*]
+        stability: [prefer-lowest, prefer-stable]
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, gd, fileinfo
+          coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php == '8.4' && matrix.laravel == '11.*' && matrix.stability == 'prefer-stable') && 'xdebug' || 'none' }}
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      - name: List Installed Dependencies
+        run: composer show -D
+
+      - name: Execute tests
+        if: ${{ !(matrix.os == 'ubuntu-latest' && matrix.php == '8.4' && matrix.laravel == '11.*' && matrix.stability == 'prefer-stable') }}
+        run: vendor/bin/pest --ci --exclude-group=arch
+
+      - name: Execute tests with coverage
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.php == '8.4' && matrix.laravel == '11.*' && matrix.stability == 'prefer-stable' }}
+        run: vendor/bin/pest --ci --coverage --min=90
