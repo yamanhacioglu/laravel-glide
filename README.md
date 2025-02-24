@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lukasmu/laravel-glide.svg)](https://packagist.org/packages/lukasmu/laravel-glide)
 [![GitHub Run Tests Action Status](https://img.shields.io/github/actions/workflow/status/lukasmu/laravel-glide/run-tests.yml?branch=main&label=tests)](https://github.com/lukasmu/laravel-glide/actions?query=workflow%3A"Run&nbsp;tests"+branch%3Amain)
 [![GitHub Format Code Action Status](https://img.shields.io/github/actions/workflow/status/lukasmu/laravel-glide/format-code.yml?branch=main&label=code%20style)](https://github.com/lukasmu/laravel-glide/actions?query=workflow%3A"Format&nbsp;code"+branch%3Amain)
+[![Coverage Status](https://coveralls.io/repos/github/lukasmu/laravel-glide/badge.svg?branch=main)](https://coveralls.io/github/lukasmu/laravel-glide?branch=main)
 [![Total Downloads](https://img.shields.io/packagist/dt/lukasmu/laravel-glide.svg)](https://packagist.org/packages/lukasmu/laravel-glide)
 
 This package simplifies the use of the [Glide](https://glide.thephpleague.com/) image manipulation library within [Laravel](https://laravel.com) applications.

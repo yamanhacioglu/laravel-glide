@@ -27,7 +27,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, gd, fileinfo
-          coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php == '8.4' && matrix.laravel == '12.*' && matrix.stability == 'prefer-stable') && 'xdebug' || 'none' }}
+          coverage: ${{ (matrix.os == 'ubuntu-latest' && matrix.php == '8.4' && matrix.laravel == '12.*' && matrix.stability == 'prefer-stable') && 'pcov' || 'none' }}
 
       - name: Setup problem matchers
         run: |
@@ -48,4 +48,12 @@ jobs:
 
       - name: Execute tests with coverage
         if: ${{ matrix.os == 'ubuntu-latest' && matrix.php == '8.4' && matrix.laravel == '12.*' && matrix.stability == 'prefer-stable' }}
-        run: vendor/bin/pest --ci --coverage --min=90
+        run: vendor/bin/pest --ci --coverage --min=90 --coverage-clover build/logs/clover.xml
+
+      - name: Upload coverage results to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.php == '8.4' && matrix.laravel == '12.*' && matrix.stability == 'prefer-stable' }}
+        run: |
+          composer global require php-coveralls/php-coveralls
+          php-coveralls --coverage_clover=build/logs/clover.xml -v

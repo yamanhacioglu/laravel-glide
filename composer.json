@@ -49,12 +49,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LukasMu\\Glide\\": "src/"
+            "LukasMu\\Glide\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LukasMu\\Glide\\Tests\\": "tests/"
+            "LukasMu\\Glide\\Tests\\": "tests"
         }
     },
     "scripts": {
