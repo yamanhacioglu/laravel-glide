@@ -164,13 +164,13 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Testing
 
-The package includes tests written for the [Pest](https://pestphp.com/) PHP testing framework and can be run by calling:
+The package includes tests written for the [Pest](https://pestphp.com/) PHP testing framework which can be run by calling:
 
 ```bash
 composer test
 ```
 
-## Security Vulnerabilities
+## Security
 
 If you discover any security related issues, please email hello@lukasmu.com instead of using the issue tracker.
 
