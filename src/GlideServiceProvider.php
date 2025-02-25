@@ -12,13 +12,13 @@ use League\Glide\Signatures\SignatureFactory;
 use League\Glide\Signatures\SignatureInterface;
 use League\Glide\Urls\UrlBuilder;
 use League\Glide\Urls\UrlBuilderFactory;
-use LukasMu\Glide\Console\Commands\ClearGlideCacheCommand;
+use LukasMu\Glide\Console\Commands\GlideClearCommand;
 use LukasMu\Glide\Facades\Glide;
 
 class GlideServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register the package services.
      */
     public function register(): void
     {
@@ -41,26 +41,25 @@ class GlideServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any package services.
+     * Bootstrap the package services.
      */
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__.'/../config/glide.php' => $this->app->configPath('glide.php'),
-        ], 'config');
-
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'glide');
-        $this->publishes([
-            __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/glide'),
-        ], 'views');
 
         Blade::componentNamespace('LukasMu\\Glide\\View\\Components', 'glide');
 
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/glide.php' => $this->app->configPath('glide.php'),
+            ], 'config');
+            $this->publishes([
+                __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/glide'),
+            ], 'views');
+
             $this->commands([
-                ClearGlideCacheCommand::class,
+                GlideClearCommand::class,
             ]);
         }
     }
