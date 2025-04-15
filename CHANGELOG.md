@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-glide` will be documented in this file.
 
+## v2.1.0 - 2025-04-15
+
+- Add option to specify custom srcset widths
+
+**Full Changelog**: https://github.com/lukasmu/laravel-glide/compare/v2.0.0...v2.1.0
+
 ## v2.0.0 - 2025-02-25
 
 - Improve consistency
