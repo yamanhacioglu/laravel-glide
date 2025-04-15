@@ -49,3 +49,15 @@ it('caches srcset widths', function () {
         1920, 1606, 1344, 1124, 940, 787, 658, 550, 460, 385, 322,
     ]);
 });
+
+it('accepts custom srcset widths', function () {
+    $src = 'test.jpg';
+
+    expect(Cache::get("glide::{$src}:srcset_widths"))->toBeNull();
+
+    $this->blade("<x-glide::img src='{$src}' srcset_widths='100,200,500' loading='eager' sizes='100vw' class='w-100' />");
+
+    expect(Cache::get("glide::{$src}:srcset_widths"))->toEqual([
+        100, 200, 500,
+    ]);
+});

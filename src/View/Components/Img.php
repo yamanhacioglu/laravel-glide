@@ -15,13 +15,19 @@ use function Illuminate\Filesystem\join_paths;
 
 class Img extends Component
 {
+    public string $src;
+
+    protected ?array $srcsetWidths;
+
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $src,
+        string $src,
+        ?string $srcsetWidths = null,
     ) {
-        // TODO: Maybe allow src to be a full URL? Maybe even allow remote sources?
+        $this->src = $src;  // TODO: Maybe allow src to be a full URL? Maybe even allow remote sources?
+        $this->srcsetWidths = $srcsetWidths ? array_map('intval', explode(',', $srcsetWidths)) : null;
     }
 
     /**
@@ -42,11 +48,11 @@ class Img extends Component
     }
 
     /**
-     * Get the widths that should be used for the srcset attribute.
+     * Automatically calculate the widths that should be used for the srcset attribute.
      *
      * The logic has been taken from https://github.com/spatie/laravel-medialibrary/blob/main/src/ResponsiveImages/WidthCalculator/FileSizeOptimizedWidthCalculator.php.
      */
-    protected function getSrcsetWidths(): ?array
+    protected function getSrcsetWidthsFromImg(): ?array
     {
         $image = rescue(fn () => Image::make(join_paths(config('glide.source'), $this->src)), null);
 
@@ -73,6 +79,29 @@ class Img extends Component
         return $srcsetWidths;
     }
 
+    /**
+     * Get the widths that should be used for the srcset attribute.
+     */
+    protected function getSrcsetWidths(): ?array
+    {
+        if ($this->srcsetWidths) {
+            return $this->srcsetWidths;
+        }
+
+        return $this->getSrcsetWidthsFromImg();
+    }
+
+    /**
+     * Get the widths that should be used for the srcset attribute.
+     */
+    protected function getSrcsetWidthsCached(): ?array
+    {
+        return Cache::rememberForever(
+            "glide::{$this->src}:srcset_widths",
+            fn () => $this->getSrcsetWidths()
+        );
+    }
+
     public function src(): string
     {
         return Glide::getUrl($this->src, $this->getGlideAttributes()->toArray());
@@ -80,10 +109,7 @@ class Img extends Component
 
     public function srcset(): ?string
     {
-        $widths = Cache::rememberForever(
-            "glide::{$this->src}:srcset_widths",
-            fn () => $this->getSrcsetWidths()
-        );
+        $widths = $this->getSrcsetWidthsCached();
 
         if (is_null($widths)) {
             return null;
