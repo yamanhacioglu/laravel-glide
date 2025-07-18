@@ -16,18 +16,19 @@ Key features include:
 - A view component for automatically generating responsive `img` elements (i.e. with auto-populated `srcset` attributes).
 - An enhanced caching logic for improved performance and fast load times.
 
+## Thanks To [lukasmu](https://github.com/lukasmu/laravel-glide). This repo is a fork of [lukasmu/laravel-glide] and updated to the latest version of Intervention/Image and Laravel 12
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require lukasmu/laravel-glide
+composer require yamanhacioglu/laravel-glide
 ```
 
 You may publish the ```glide.php``` config file with:
 
 ```bash
-php artisan vendor:publish --provider="LukasMu\Glide\GlideServiceProvider" --tag="config"
+php artisan vendor:publish --provider="NorthLab\Glide\GlideServiceProvider" --tag="config"
 ```
 
 It is highly recommended to add an additional symbolic link in your ```filesystems.php``` configuration file:
@@ -46,7 +47,7 @@ Do not forget to run the ```php artisan storage:link``` command after adding the
 If you plan to modify the package views, you can publish them with:
 
 ```bash
-php artisan vendor:publish --provider="LukasMu\Glide\GlideServiceProvider" --tag="views"
+php artisan vendor:publish --provider="NorthLab\Glide\GlideServiceProvider" --tag="views"
 ```
 
 ## Usage
