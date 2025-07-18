@@ -1,6 +1,6 @@
 <?php
 
-namespace LukasMu\Glide\Http\Middleware;
+namespace NorthLab\Glide\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

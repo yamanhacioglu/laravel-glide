@@ -1,21 +1,21 @@
 {
-    "name": "lukasmu/laravel-glide",
-    "description": "Use Glide with ease directly in Laravel views",
+    "name": "yamanhacioglu/laravel-glide",
+    "description": "Use Glide with ease directly in Laravel views - Forked and Updated from lukasmu/laravel-glide",
     "keywords": [
-        "lukasmu",
+        "northlab",
         "laravel",
         "glide",
         "blade",
         "components",
         "responsive"
     ],
-    "homepage": "https://github.com/lukasmu/laravel-glide",
+    "homepage": "https://github.com/yamanhacioglu/laravel-glide",
     "license": "MIT",
     "authors": [
         {
-            "name": "Lukas Müller",
-            "email": "hello@lukasmu.com",
-            "homepage": "https://lukasmu.com",
+            "name": "Yaman HACIOĞLU",
+            "email": "info@northlab.com.tr",
+            "homepage": "https://www.northlab.com.tr",
             "role": "Developer"
         }
     ],
@@ -27,7 +27,7 @@
         "illuminate/http": "^10.0||^11.0||^12.0",
         "illuminate/support": "^10.0||^11.0||^12.0",
         "illuminate/view": "^10.0||^11.0||^12.0",
-        "intervention/image": "^2.7",
+        "intervention/image": "^3.0",
         "league/flysystem": "^3.29",
         "league/glide": "^2.3",
         "league/glide-symfony": "^2.0",
@@ -37,10 +37,10 @@
     "require-dev": {
         "larastan/larastan": "^2.9||^3.1",
         "laravel/pint": "^1.14",
-        "orchestra/testbench": "^8.22||^9.0||^10.0",
+        "orchestra/testbench": "^8.22||^9.0||^10.0||^12.0",
         "pestphp/pest": "^2.36||^3.7",
         "pestphp/pest-plugin-arch": "^2.7||^3.0",
-        "pestphp/pest-plugin-laravel": "^2.4||^3.1",
+        "pestphp/pest-plugin-laravel": "^2.4||^3.1||^4.0",
         "phpstan/phpstan": "^1.12||^2.1",
         "phpstan/extension-installer": "^1.3",
         "phpstan/phpstan-deprecation-rules": "^1.1||^2.0",
@@ -49,12 +49,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LukasMu\\Glide\\": "src"
+            "NorthLab\\Glide\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LukasMu\\Glide\\Tests\\": "tests"
+            "NorthLab\\Glide\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -74,10 +74,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LukasMu\\Glide\\GlideServiceProvider"
+                "NorthLab\\Glide\\GlideServiceProvider"
             ],
             "aliases": {
-                "Glide": "LukasMu\\Glide\\Facades\\Glide"
+                "Glide": "NorthLab\\Glide\\Facades\\Glide"
             }
         }
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace LukasMu\Glide\Console\Commands;
+namespace NorthLab\Glide\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;

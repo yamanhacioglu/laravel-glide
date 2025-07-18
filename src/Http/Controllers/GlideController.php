@@ -1,12 +1,12 @@
 <?php
 
-namespace LukasMu\Glide\Http\Controllers;
+namespace NorthLab\Glide\Http\Controllers;
 
 use Illuminate\Http\Request;
 use League\Glide\Filesystem\FileNotFoundException;
 use League\Glide\Responses\SymfonyResponseFactory;
 use League\Glide\Server;
-use LukasMu\Glide\Facades\Glide;
+use NorthLab\Glide\Facades\Glide;
 
 class GlideController
 {

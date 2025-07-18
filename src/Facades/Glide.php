@@ -1,12 +1,12 @@
 <?php
 
-namespace LukasMu\Glide\Facades;
+namespace NorthLab\Glide\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use LukasMu\Glide\GlideService;
+use NorthLab\Glide\GlideService;
 
 /**
- * @see \LukasMu\Glide\GlideService
+ * @see \NorthLab\Glide\GlideService
  */
 class Glide extends Facade
 {

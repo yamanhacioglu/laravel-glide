@@ -1,6 +1,6 @@
 <?php
 
-namespace LukasMu\Glide;
+namespace NorthLab\Glide;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\UrlGenerator;
@@ -12,8 +12,8 @@ use League\Glide\Signatures\SignatureFactory;
 use League\Glide\Signatures\SignatureInterface;
 use League\Glide\Urls\UrlBuilder;
 use League\Glide\Urls\UrlBuilderFactory;
-use LukasMu\Glide\Console\Commands\GlideClearCommand;
-use LukasMu\Glide\Facades\Glide;
+use NorthLab\Glide\Console\Commands\GlideClearCommand;
+use NorthLab\Glide\Facades\Glide;
 
 class GlideServiceProvider extends ServiceProvider
 {

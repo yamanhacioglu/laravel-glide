@@ -1,6 +1,6 @@
 <?php
 
-namespace LukasMu\Glide;
+namespace NorthLab\Glide;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;

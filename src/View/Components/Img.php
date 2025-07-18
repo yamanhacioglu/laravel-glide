@@ -1,6 +1,6 @@
 <?php
 
-namespace LukasMu\Glide\View\Components;
+namespace NorthLab\Glide\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -8,8 +8,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
-use Intervention\Image\Facades\Image;
-use LukasMu\Glide\Facades\Glide;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use NorthLab\Glide\Facades\Glide;
 
 use function Illuminate\Filesystem\join_paths;
 
@@ -54,13 +55,15 @@ class Img extends Component
      */
     protected function getSrcsetWidthsFromImg(): ?array
     {
-        $image = rescue(fn () => Image::make(join_paths(config('glide.source'), $this->src)), null);
+        $manager = new ImageManager(new Driver());
+        $image = rescue(fn () => $manager->read(join_paths(config('glide.source'), $this->src)), null);
 
         if (is_null($image)) {
             return null;
         }
 
-        $filesize = $image->filesize();
+        $imagePath = join_paths(config('glide.source'), $this->src);
+        $filesize = file_exists($imagePath) ? filesize($imagePath) : 0;
         $width = $image->width();
         $height = $image->height();
 
