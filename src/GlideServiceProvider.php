@@ -36,7 +36,12 @@ class GlideServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(Server::class, function (Application $app) {
-            return ServerFactory::create(config('glide'));
+            $config = config('glide');
+
+            // Remove the response factory from config as we'll handle it separately
+            unset($config['response']);
+
+            return ServerFactory::create($config);
         });
     }
 
@@ -48,7 +53,7 @@ class GlideServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'glide');
 
-        Blade::componentNamespace('LukasMu\\Glide\\View\\Components', 'glide');
+        Blade::componentNamespace('NorthLab\\Glide\\View\\Components', 'glide');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([

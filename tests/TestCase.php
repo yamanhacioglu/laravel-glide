@@ -1,11 +1,11 @@
 <?php
 
-namespace LukasMu\Glide\Tests;
+namespace NorthLab\Glide\Tests;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageServiceProvider;
-use LukasMu\Glide\GlideServiceProvider;
+use NorthLab\Glide\GlideServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase

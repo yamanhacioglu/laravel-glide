@@ -1,47 +1,114 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Image Source
+    |--------------------------------------------------------------------------
+    |
+    | The source directory where images are stored. This should be an absolute
+    | path to the directory where your images are located.
+    |
+    */
+    'source' => storage_path('app/public'),
 
     /*
     |--------------------------------------------------------------------------
-    | Source
+    | Cache Path
     |--------------------------------------------------------------------------
     |
-    | Here you can configure the storage location of the source images.
+    | The cache directory where processed images will be stored. This should
+    | be an absolute path to a writable directory.
     |
     */
-
-    'source' => public_path(),
+    'cache' => storage_path('app/glide'),
 
     /*
     |--------------------------------------------------------------------------
-    | Cache
+    | Cache Path Prefix
     |--------------------------------------------------------------------------
     |
-    | Here you can configure the storage location for the cached images.
+    | Optional path prefix for cache directory. This is useful if you want
+    | to organize cache files in subdirectories.
     |
     */
-
-    'cache' => storage_path('framework/cache/glide'),
+    'cache_path_prefix' => null,
 
     /*
     |--------------------------------------------------------------------------
-    | Driver
+    | Base URL
     |--------------------------------------------------------------------------
     |
-    | The driver that will be used to create images. Can be set to gd or imagick.
+    | The base URL prefix for image URLs. This will be prepended to all
+    | generated image URLs.
     |
     */
-    'driver' => 'gd',
+    'prefix' => '/glide',
 
     /*
     |--------------------------------------------------------------------------
-    | URL prefix
+    | Maximum Image Size
     |--------------------------------------------------------------------------
     |
-    | The prefix that will be used to build the URLs which serve the images.
+    | The maximum size for image width and height in pixels. Set to null
+    | to allow unlimited size.
     |
     */
-    'prefix' => 'glide',
+    'max_image_size' => 2000*2000,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Default Quality
+    |--------------------------------------------------------------------------
+    |
+    | The default quality for image compression (1-100).
+    |
+    */
+    'quality' => 90,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Response Factory
+    |--------------------------------------------------------------------------
+    |
+    | The response factory class to use for generating HTTP responses.
+    |
+    */
+    'response' => League\Glide\Responses\LaravelResponseFactory::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Watermarks
+    |--------------------------------------------------------------------------
+    |
+    | Path to watermark files.
+    |
+    */
+    'watermarks' => storage_path('app/watermarks'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Presets
+    |--------------------------------------------------------------------------
+    |
+    | Preset configurations for common image manipulations.
+    |
+    */
+    'presets' => [
+        'small' => [
+            'w' => 200,
+            'h' => 200,
+            'fit' => 'crop',
+        ],
+        'medium' => [
+            'w' => 600,
+            'h' => 400,
+            'fit' => 'crop',
+        ],
+        'large' => [
+            'w' => 1200,
+            'h' => 800,
+            'fit' => 'crop',
+        ],
+    ],
 ];

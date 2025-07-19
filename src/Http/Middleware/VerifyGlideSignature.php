@@ -19,7 +19,7 @@ class VerifyGlideSignature
         try {
             App::make(SignatureInterface::class)->validateRequest($request->path(), $request->toArray());
         } catch (SignatureException) {
-            abort(403);
+            abort(403, 'Invalid signature');
         }
 
         return $next($request);

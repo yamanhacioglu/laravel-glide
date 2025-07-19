@@ -17,8 +17,9 @@ class GlideService
     protected function getRouteParams(string $path, array $params): array
     {
         // Determine image format and corresponding extension
-        $format = $params['fm'] ?? Str::before(pathinfo($path)['extension'], '?');
-        $extension = $format === 'pjpg' ? 'jpg' : $format;
+        $pathInfo = pathinfo($path);
+        $format = $params['fm'] ?? Str::before($pathInfo['extension'] ?? 'webp', '?');
+        $extension = $format === 'jpg' ? 'jpg' : $format;
 
         // No need to include the format parameter if it coincides with the extension
         if ($format === $extension) {
